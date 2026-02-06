@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 850px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background-color: #f9f9f9;
+        }
+        
+        .color-picker-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .color-input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            padding: 4px;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .color-input-wrapper:focus-within {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        input[type="color"] {
+            width: 45px;
+            height: 35px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .color-hex {
+            padding: 0 12px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #333;
+            min-width: 70px;
+        }
+        
+        .color-preview {
+            width: 35px;
+            height: 35px;
+            border-radius: 6px;
+            border: 2px solid #ddd;
+            background-color: #3498db;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        
+        select:focus,
+        input:focus {
+            border-color: #3498db;
+            background-color: #fff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .field-icon {
+            position: absolute;
+            right: 12px;
+            top: 36px;
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        
+        .hobbies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            margin-top: 5px;
+        }
+        
+        .hobby-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .hobby-option:hover {
+            background-color: #e9ecef;
+            border-color: #3498db;
+        }
+        
+        .hobby-option input {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .hobby-option i {
+            margin-right: 8px;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        
+        .radio-option input {
+            margin-right: 6px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 140px;
+        }
+        
+        .submit-btn {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .submit-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .reset-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .reset-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .reset-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .validation-message {
+            color: #e74c3c;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: none;
+            line-height: 1.3;
+        }
+        
+        .success-message {
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease;
+            font-size: 0.95rem;
+        }
+        
+        .password-strength {
+            height: 4px;
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .strength-meter {
+            height: 100%;
+            width: 0;
+            transition: all 0.3s;
+        }
+        
+        .password-info {
+            font-size: 0.75rem;
+            color: #7f8c8d;
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+        
+        .form-note {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 8px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+        
+        .terms {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .terms label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            font-weight: normal;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .terms input {
+            margin-right: 8px;
+            margin-top: 2px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .terms a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .terms a:hover {
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Small phones (portrait) */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                align-items: flex-start;
+                min-height: auto;
+            }
+            
+            .container {
+                padding: 20px 15px;
+                margin: 10px 0;
+                border-radius: 12px;
+            }
+            
+            h1 {
+                font-size: 1.7rem;
+                margin-bottom: 5px;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+                padding: 0 5px;
+            }
+            
+            .form-row {
+                gap: 0;
+                margin-bottom: 0;
+                flex-direction: column;
+            }
+            
+            .form-group {
+                margin-bottom: 18px;
+                min-width: 100%;
+            }
+            
+            .color-picker-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .color-input-wrapper {
+                width: 100%;
+            }
+            
+            .hobbies-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .hobby-option {
+                padding: 10px 12px;
+            }
+            
+            .radio-group {
+                gap: 10px;
+            }
+            
+            .radio-option {
+                font-size: 0.85rem;
+                white-space: normal;
+                flex: 1;
+                min-width: 45%;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                margin-top: 25px;
+                gap: 12px;
+            }
+            
+            button {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 0.95rem;
+            }
+            
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="number"],
+            input[type="date"],
+            input[type="tel"],
+            select {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+            
+            .field-icon {
+                top: 34px;
+                right: 10px;
+            }
+        }
+        
+        /* Medium phones (landscape) and small tablets */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .form-row {
+                gap: 15px;
+            }
+            
+            .form-group {
+                flex: 0 0 calc(50% - 7.5px);
+                min-width: 0;
+            }
+            
+            .hobbies-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .radio-group {
+                gap: 12px;
+            }
+            
+            .radio-option {
+                flex: 1;
+                min-width: 45%;
+            }
+            
+            .buttons {
+                gap: 15px;
+            }
+            
+            button {
+                padding: 14px 25px;
+            }
+        }
+        
+        /* Tablets and small laptops */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 30px;
+                max-width: 90%;
+            }
+            
+            .hobbies-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Prevent horizontal scrolling on very small devices */
+        @media (max-width: 350px) {
+            .container {
+                padding: 15px 12px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .hobby-option {
+                font-size: 0.85rem;
+                padding: 8px 10px;
+            }
+            
+            .radio-option {
+                font-size: 0.8rem;
+            }
+            
+            button {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Fix for iOS Safari input zoom issue */
+        @media screen and (max-width: 768px) {
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="number"],
+            input[type="tel"],
+            select {
+                font-size: 16px !important;
+            }
+        }
+        
+        /* Improve touch targets for mobile */
+        @media (max-width: 768px) {
+            .hobby-option,
+            .radio-option,
+            button,
+            input[type="checkbox"],
+            input[type="radio"] {
+                min-height: 44px;
+            }
+            
+            .hobby-option,
+            .radio-option {
+                align-items: center;
+            }
+            
+            input[type="checkbox"],
+            input[type="radio"] {
+                min-width: 20px;
+                min-height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Your Account</h1>
+        <p class="subtitle">Join our community by filling out the registration form below</p>
+        
+        <form id="registrationForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    <i class="fas fa-user field-icon"></i>
+                    <div class="validation-message" id="nameError">Full name is required (letters and spaces only, minimum 3 characters)</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+                    <i class="fas fa-envelope field-icon"></i>
+                    <div class="validation-message" id="emailError">Valid email address is required</div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">Password <span class="required">*</span></label>
+                    <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+                    <i class="fas fa-lock field-icon"></i>
+                    <div class="password-strength">
+                        <div class="strength-meter" id="passwordStrength"></div>
+                    </div>
+                    <div class="password-info">Password must be at least 8 characters with letters and numbers</div>
+                    <div class="validation-message" id="passwordError">Password is required (minimum 8 characters with letters and numbers)</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="(123) 456-7890" required>
+                    <i class="fas fa-phone field-icon"></i>
+                    <div class="validation-message" id="phoneError">Valid phone number is required (10 digits minimum)</div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" placeholder="Enter your age" min="1" max="120">
+                    <i class="fas fa-birthday-cake field-icon"></i>
+                    <div class="validation-message" id="ageError">Age must be between 1 and 120</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="birthday">Birthday</label>
+                    <input type="date" id="birthday" name="birthday">
+                    <i class="fas fa-calendar-alt field-icon"></i>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="favoriteColor">Favorite Color</label>
+                    <div class="color-picker-container">
+                        <div class="color-input-wrapper">
+                            <input type="color" id="favoriteColor" name="favoriteColor" value="#3498db">
+                            <span class="color-hex" id="colorHex">#3498db</span>
+                        </div>
+                        <div class="color-preview" id="colorPreview"></div>
+                    </div>
+                    <div class="form-note">Click the color box to choose your favorite color</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" id="genderMale" name="gender" value="male">
+                            Male
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" id="genderFemale" name="gender" value="female">
+                            Female
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" id="genderOther" name="gender" value="other">
+                            Other
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" id="genderPreferNot" name="gender" value="prefer-not-to-say">
+                            Prefer not to say
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="hobbies">Hobbies (Select all that apply)</label>
+                <div class="hobbies-container">
+                    <label class="hobby-option">
+                        <input type="checkbox" id="hobbyReading" name="hobbies[]" value="reading">
+                        <i class="fas fa-book" style="color: #3498db;"></i> Reading
+                    </label>
+                    <label class="hobby-option">
+                        <input type="checkbox" id="hobbyGaming" name="hobbies[]" value="gaming">
+                        <i class="fas fa-gamepad" style="color: #e74c3c;"></i> Gaming
+                    </label>
+                    <label class="hobby-option">
+                        <input type="checkbox" id="hobbySports" name="hobbies[]" value="sports">
+                        <i class="fas fa-running" style="color: #2ecc71;"></i> Sports
+                    </label>
+                    <label class="hobby-option">
+                        <input type="checkbox" id="hobbyMusic" name="hobbies[]" value="music">
+                        <i class="fas fa-music" style="color: #9b59b6;"></i> Music
+                    </label>
+                    <label class="hobby-option">
+                        <input type="checkbox" id="hobbyTravel" name="hobbies[]" value="travel">
+                        <i class="fas fa-plane" style="color: #f39c12;"></i> Travel
+                    </label>
+                    <label class="hobby-option">
+                        <input type="checkbox" id="hobbyCooking" name="hobbies[]" value="cooking">
+                        <i class="fas fa-utensils" style="color: #e67e22;"></i> Cooking
+                    </label>
+                    <label class="hobby-option">
+                        <input type="checkbox" id="hobbyPhotography" name="hobbies[]" value="photography">
+                        <i class="fas fa-camera" style="color: #34495e;"></i> Photography
+                    </label>
+                    <label class="hobby-option">
+                        <input type="checkbox" id="hobbyArt" name="hobbies[]" value="art">
+                        <i class="fas fa-paint-brush" style="color: #1abc9c;"></i> Art
+                    </label>
+                    <label class="hobby-option">
+                        <input type="checkbox" id="hobbyCoding" name="hobbies[]" value="coding">
+                        <i class="fas fa-code" style="color: #2c3e50;"></i> Coding
+                    </label>
+                    <label class="hobby-option">
+                        <input type="checkbox" id="hobbyMovies" name="hobbies[]" value="movies">
+                        <i class="fas fa-film" style="color: #8e44ad;"></i> Movies
+                    </label>
+                </div>
+            </div>
+            
+            <div class="terms">
+                <label>
+                    <input type="checkbox" id="terms" name="terms" required>
+                    I agree to the <a href="#" id="termsLink">Terms and Conditions</a> and <a href="#" id="privacyLink">Privacy Policy</a> <span class="required">*</span>
+                </label>
+                <div class="validation-message" id="termsError">You must agree to the terms and conditions</div>
+            </div>
+            
+            <div class="buttons">
+                <button type="submit" name="submit" class="submit-btn">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+                <button type="reset" name="reset" class="reset-btn" id="resetBtn">
+                    <i class="fas fa-redo"></i> Reset Form
+                </button>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i> Registration successful! Thank you for joining us.
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            const resetBtn = document.getElementById('resetBtn');
+            const successMessage = document.getElementById('successMessage');
+            const passwordInput = document.getElementById('password');
+            const passwordStrength = document.getElementById('passwordStrength');
+            const colorInput = document.getElementById('favoriteColor');
+            const colorPreview = document.getElementById('colorPreview');
+            const colorHex = document.getElementById('colorHex');
+            const fullNameInput = document.getElementById('fullName');
+            const termsCheckbox = document.getElementById('terms');
+            const termsLink = document.getElementById('termsLink');
+            const privacyLink = document.getElementById('privacyLink');
+            
+            // Set max date for birthday to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('birthday').max = today;
+            
+            // Terms and Privacy links
+            termsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert("Terms and Conditions:\n\n1. You must provide accurate information\n2. You are responsible for maintaining your account security\n3. We respect your privacy and protect your data\n4. You agree to use the service lawfully");
+            });
+            
+            privacyLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert("Privacy Policy:\n\n1. We collect only necessary information\n2. Your data is encrypted and secure\n3. We never share your personal information\n4. You can request data deletion anytime");
+            });
+            
+            // Update color preview and hex value
+            colorPreview.style.backgroundColor = colorInput.value;
+            colorInput.addEventListener('input', function() {
+                colorPreview.style.backgroundColor = this.value;
+                colorHex.textContent = this.value;
+            });
+            
+            // Phone number formatting
+            const phoneInput = document.getElementById('phoneNumber');
+            phoneInput.addEventListener('input', function() {
+                let phoneNumber = this.value.replace(/\D/g, '');
+                
+                if (phoneNumber.length > 0) {
+                    // Format as (123) 456-7890
+                    if (phoneNumber.length <= 3) {
+                        phoneNumber = '(' + phoneNumber;
+                    } else if (phoneNumber.length <= 6) {
+                        phoneNumber = '(' + phoneNumber.substring(0, 3) + ') ' + phoneNumber.substring(3);
+                    } else {
+                        phoneNumber = '(' + phoneNumber.substring(0, 3) + ') ' + phoneNumber.substring(3, 6) + '-' + phoneNumber.substring(6, 10);
+                    }
+                }
+                
+                this.value = phoneNumber;
+                
+                // Validate phone number in real-time
+                validatePhoneNumber(this.value);
+            });
+            
+            function validatePhoneNumber(phone) {
+                const phoneDigits = phone.replace(/\D/g, '');
+                const phoneError = document.getElementById('phoneError');
+                
+                if (phoneDigits.length >= 10) {
+                    phoneInput.style.borderColor = '#2ecc71';
+                    phoneError.style.display = 'none';
+                    return true;
+                } else {
+                    phoneInput.style.borderColor = '#ddd';
+                    return false;
+                }
+            }
+            
+            // Validate name to accept only letters and spaces
+            fullNameInput.addEventListener('input', function() {
+                const nameValue = this.value.trim();
+                const namePattern = /^[A-Za-z\s]{3,}$/;
+                
+                if (namePattern.test(nameValue)) {
+                    this.style.borderColor = '#2ecc71';
+                    document.getElementById('nameError').style.display = 'none';
+                } else if (nameValue.length > 0) {
+                    this.style.borderColor = '#e74c3c';
+                } else {
+                    this.style.borderColor = '#ddd';
+                }
+            });
+            
+            // Password strength indicator
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 0;
+                
+                // Length check
+                if (password.length >= 8) strength += 25;
+                if (password.length >= 12) strength += 10;
+                
+                // Contains numbers
+                if (/\d/.test(password)) strength += 25;
+                
+                // Contains lowercase and uppercase
+                if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 25;
+                
+                // Contains special characters
+                if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+                
+                // Cap at 100
+                strength = Math.min(strength, 100);
+                
+                // Update strength meter
+                passwordStrength.style.width = strength + '%';
+                
+                // Change color based on strength
+                if (strength < 50) {
+                    passwordStrength.style.backgroundColor = '#e74c3c';
+                } else if (strength < 75) {
+                    passwordStrength.style.backgroundColor = '#f39c12';
+                } else {
+                    passwordStrength.style.backgroundColor = '#2ecc71';
+                }
+                
+                // Real-time password validation
+                const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+                if (passwordPattern.test(password)) {
+                    this.style.borderColor = '#2ecc71';
+                    document.getElementById('passwordError').style.display = 'none';
+                } else if (password.length > 0) {
+                    this.style.borderColor = '#e74c3c';
+                } else {
+                    this.style.borderColor = '#ddd';
+                }
+            });
+            
+            // Form validation
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+                
+                // Reset previous error states
+                document.querySelectorAll('.validation-message').forEach(msg => {
+                    msg.style.display = 'none';
+                });
+                
+                document.querySelectorAll('input').forEach(input => {
+                    input.style.borderColor = '#ddd';
+                });
+                
+                // Validate Full Name (Required) - Only letters and spaces
+                const fullName = fullNameInput.value.trim();
+                const namePattern = /^[A-Za-z\s]{3,}$/;
+                if (!namePattern.test(fullName)) {
+                    document.getElementById('nameError').style.display = 'block';
+                    fullNameInput.style.borderColor = '#e74c3c';
+                    isValid = false;
+                }
+                
+                // Validate Email (Required)
+                const email = document.getElementById('email').value.trim();
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    document.getElementById('email').style.borderColor = '#e74c3c';
+                    isValid = false;
+                }
+                
+                // Validate Password (Required)
+                const password = document.getElementById('password').value;
+                const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+                if (!passwordPattern.test(password)) {
+                    document.getElementById('passwordError').style.display = 'block';
+                    document.getElementById('password').style.borderColor = '#e74c3c';
+                    isValid = false;
+                }
+                
+                // Validate Phone Number (Required)
+                const phoneNumber = document.getElementById('phoneNumber').value;
+                const phoneDigits = phoneNumber.replace(/\D/g, '');
+                if (phoneDigits.length < 10) {
+                    document.getElementById('phoneError').style.display = 'block';
+                    document.getElementById('phoneNumber').style.borderColor = '#e74c3c';
+                    isValid = false;
+                }
+                
+                // Validate Age (Optional)
+                const age = document.getElementById('age').value;
+                if (age && (age < 1 || age > 120)) {
+                    document.getElementById('ageError').style.display = 'block';
+                    document.getElementById('age').style.borderColor = '#e74c3c';
+                    isValid = false;
+                }
+                
+                // Validate Terms (Required)
+                if (!termsCheckbox.checked) {
+                    document.getElementById('termsError').style.display = 'block';
+                    termsCheckbox.parentElement.style.borderColor = '#e74c3c';
+                    isValid = false;
+                }
+                
+                // If form is valid, show success message
+                if (isValid) {
+                    successMessage.style.display = 'block';
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                    
+                    // In a real application, you would submit the form data to a server here
+                    console.log('Form submitted successfully!');
+                    console.log('Form data:', {
+                        fullName: fullName,
+                        email: email,
+                        password: '***',
+                        phoneNumber: phoneNumber,
+                        age: age,
+                        birthday: document.getElementById('birthday').value,
+                        favoriteColor: document.getElementById('favoriteColor').value,
+                        gender: document.querySelector('input[name="gender"]:checked')?.value,
+                        hobbies: Array.from(document.querySelectorAll('input[name="hobbies[]"]:checked')).map(cb => cb.value),
+                        terms: termsCheckbox.checked
+                    });
+                }
+            });
+            
+            // Reset form functionality
+            resetBtn.addEventListener('click', function() {
+                // Clear validation messages
+                document.querySelectorAll('.validation-message').forEach(msg => {
+                    msg.style.display = 'none';
+                });
+                
+                // Reset input borders
+                document.querySelectorAll('input').forEach(input => {
+                    input.style.borderColor = '#ddd';
+                });
+                
+                // Reset terms border
+                termsCheckbox.parentElement.style.borderColor = '#e9ecef';
+                
+                // Hide success message
+                successMessage.style.display = 'none';
+                
+                // Reset password strength indicator
+                passwordStrength.style.width = '0%';
+                
+                // Reset color preview
+                colorPreview.style.backgroundColor = '#3498db';
+                colorHex.textContent = '#3498db';
+            });
+            
+            // Real-time validation for email
+            document.getElementById('email').addEventListener('input', function() {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailPattern.test(this.value.trim())) {
+                    this.style.borderColor = '#2ecc71';
+                    document.getElementById('emailError').style.display = 'none';
+                } else {
+                    this.style.borderColor = '#ddd';
+                }
+            });
+            
+            // Terms checkbox validation
+            termsCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    this.parentElement.style.borderColor = '#e9ecef';
+                    document.getElementById('termsError').style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
